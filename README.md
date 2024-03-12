@@ -29,7 +29,8 @@ This will allow our instance to be able to send and receive traffic, thus be abl
 Step 2: via CLI
 
 i. ON YOUR COMMAND PROMPT Connect to Instance:
-Establish SSH connection to the EC2 instance.
+Establish SSH connection to the EC2 instance.--
+
 cd "path to your key file" for eg- cd C:\Users\NAME\linux key  (remember to put the cd command before the path)
 then, click enter and copy and paste your AWS CONSOLE SSH (its found when you click on your instance name and click on connect, 
 under the 'connect to instance' page click on the SSH client and you will find your instance public DNS that
@@ -268,8 +269,6 @@ sudo apt install mysql-server
 
 sudo apt install php-fpm php-mysql
 
-sudo nano /etc/nginx/nginx.conf
-
 sudo mkdir /var/www/projectLEMP
 
 sudo chown -R $USER:$USER /var/www/projectLEMP
@@ -290,7 +289,60 @@ $(curl -s http://169.254.169.254/latest/meta-data/public-ipv4) > /var/www/projec
 
 TROUBLESHOOTING ERROR
 
-sudo ss -tuln | grep :80
+a. How to Uninstall MYSQL From Ubuntu?
+i encountered a password error (i forgot to add a password)
+so i got locked out from using mysql so i had to uninstall mysql from my ubuntu.(i reinstalled it after the uninstall to correct the password part)
+
+Before uninstallation, you should back up your files and configurations i.e if you have any that is important.
+You can do it manually if you are familiar with MYSQL or use the mysqldump utility, which will secure your data.
+
+Step 1: Stop MYSQL Services
+Before removing any application with background services, it is necessary to stop all its services before moving forward with the uninstallation process. To stop MySQL and its services, open your terminal window and run this command:
+
+sudo systemctl stop mysql
+
+stop mysql
+
+This command will stop the services of MYSQL, and now you can safely remove the MYSQL database from your system.
+
+
+Step 2: Remove the MySQL Essentials
+Run this command to remove the MYSQL server, client, common, server-core, and client-core packages from your system:
+
+sudo apt purge mysql-server mysql-client mysql-common mysql-server-core-* mysql-client-core-*
+uninstall mysql
+
+The MYSQL files are now removed from your system.
+
+Step 3: Remove the MySQL Associated Files
+Now the next step is to remove the remaining files from the folders:
+
+sudo rm -rf /etc/mysql /var/lib/mysql /var/log/mysql
+remove files
+
+Step 4: Remove Additional Packages
+This command will automatically remove the files from the folders. After this run, these commands:
+
+sudo apt autoremove
+autoremove
+
+It is recommended to clean the disk space on Ubuntu as well, using the command:
+
+sudo apt autoclean
+autoclean
+
+All the dependencies and additional files will be removed by auto-remove and auto-clean commands.
+
+Step 5: Remove the Configurations
+After this run, this command to remove the configuration, as in some cases configuration is not removed or some files are remaining on the system:
+
+sudo apt remove dbconfig-mysql
+remove configurations
+
+Once all the above steps are completed, MySQL will be removed from your system completely.
+
+
+b. sudo ss -tuln | grep :80
 
 Stop the conflicting process: Once you've identified the process using port 80, you can stop it using the appropriate command. For example, if it's Apache, you can use:
 
