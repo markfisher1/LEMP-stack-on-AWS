@@ -7,7 +7,9 @@ LEMP stands for: Linux, NGINX web server, MySQL Database, and PHP
 What you will need?
 
 AWS account
+
 Local machine CLI
+
 water and patience
 
 1.Connect to EC2 Instance:
@@ -15,14 +17,21 @@ water and patience
 Step 1: Create an AWS EC2 instance
 
 The first thing we are going to do is to log into in the AWS Management Console and create an EC2 instance
+
 Choose a name you like and select the Ubuntu image for the instance.
+
 Select the “Ubuntu Server 22.04 LTS HVM, Volume Type”.
+
 You will see it under the free tier.
+
 If you have a key pair already created select it from the drop down menu, 
+
 if you don’t have one, then create one and download it to your local machine
+
 Select the default EBS volume(8 gbs)
 
 Under the “Network settings” we will create a new security group and select “allow SSH traffic from” and “Allow HTTP from the internet”.
+
 This will allow our instance to be able to send and receive traffic, thus be able to connect to the internet.
 
 
@@ -287,17 +296,25 @@ sudo echo 'Hello LEMP from hostname' $(curl -s http://169.254.169.254/latest/met
 $(curl -s http://169.254.169.254/latest/meta-data/public-ipv4) > /var/www/projectLEMP/index.html
 
 
+
+
 TROUBLESHOOTING ERROR
 
-a. How to Uninstall MYSQL From Ubuntu?
-i encountered a password error (i forgot to add a password)
+How to Uninstall MYSQL From Ubuntu?
+
+i encountered a password error (i forgot to add a password during mysql)
+
 so i got locked out from using mysql so i had to uninstall mysql from my ubuntu.(i reinstalled it after the uninstall to correct the password part)
 
 Before uninstallation, you should back up your files and configurations i.e if you have any that is important.
+
 You can do it manually if you are familiar with MYSQL or use the mysqldump utility, which will secure your data.
 
 Step 1: Stop MYSQL Services
-Before removing any application with background services, it is necessary to stop all its services before moving forward with the uninstallation process. To stop MySQL and its services, open your terminal window and run this command:
+
+Before removing any application with background services, it is necessary to stop all its services before moving forward with the uninstallation process. To stop MySQL and its 
+
+services, open your terminal window and run this command:
 
 sudo systemctl stop mysql
 
@@ -307,6 +324,7 @@ This command will stop the services of MYSQL, and now you can safely remove the 
 
 
 Step 2: Remove the MySQL Essentials
+
 Run this command to remove the MYSQL server, client, common, server-core, and client-core packages from your system:
 
 sudo apt purge mysql-server mysql-client mysql-common mysql-server-core-* mysql-client-core-*
@@ -315,46 +333,31 @@ uninstall mysql
 The MYSQL files are now removed from your system.
 
 Step 3: Remove the MySQL Associated Files
+
 Now the next step is to remove the remaining files from the folders:
 
 sudo rm -rf /etc/mysql /var/lib/mysql /var/log/mysql
-remove files
+     remove files
 
 Step 4: Remove Additional Packages
+
 This command will automatically remove the files from the folders. After this run, these commands:
 
 sudo apt autoremove
-autoremove
+     autoremove
 
 It is recommended to clean the disk space on Ubuntu as well, using the command:
 
 sudo apt autoclean
-autoclean
+       autoclean
 
 All the dependencies and additional files will be removed by auto-remove and auto-clean commands.
 
 Step 5: Remove the Configurations
+
 After this run, this command to remove the configuration, as in some cases configuration is not removed or some files are remaining on the system:
 
 sudo apt remove dbconfig-mysql
-remove configurations
+    remove configurations
 
 Once all the above steps are completed, MySQL will be removed from your system completely.
-
-
-b. sudo ss -tuln | grep :80
-
-Stop the conflicting process: Once you've identified the process using port 80, you can stop it using the appropriate command. For example, if it's Apache, you can use:
-
-sudo systemctl stop apache2
-Replace apache2 with the actual service name if it's different.
-
-Start Nginx: After stopping the conflicting process, you can start Nginx again:
-
-sudo systemctl start nginx
-Check Nginx status: Verify that Nginx is running without any errors:
-
-sudo systemctl status nginx
-If Nginx is running without errors, you should see an Active: active (running) status.
-
-By following these steps, you should be able to resolve the issue.
