@@ -72,7 +72,7 @@ Check to see if we can receive traffic to our instance via the WEB BROWSER.
 Copy the IP address of the instance and paste that into your browser window using the ,
 and hit the ENTER/RETURN key on your keyboard.--
 
-http://<Public-IP-Address>:80
+http://Public-IP-Address:80
 
  voila 
 
