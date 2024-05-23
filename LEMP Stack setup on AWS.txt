@@ -1,4 +1,4 @@
-Part 2: Setting Up LEMP Stack:
+Setting Up LEMP Stack on AWS:
 
 LEMP stands for: Linux, NGINX web server, MySQL Database, and PHP
 
@@ -39,6 +39,9 @@ update to the latest version by running the command -
 
 sudo apt update
 
+if there is anything to ugrade - 
+
+sudo apt upgrade
 
 2.Install Components:
 
