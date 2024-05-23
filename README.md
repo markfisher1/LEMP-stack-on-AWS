@@ -1,4 +1,4 @@
-Part 2: Setting Up LEMP Stack:
+Setting Up LEMP Stack on AWS:
 
 1.Connect to EC2 Instance:
 
