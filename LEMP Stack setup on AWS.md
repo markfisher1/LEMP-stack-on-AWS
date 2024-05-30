@@ -1,10 +1,11 @@
-Setting Up LEMP Stack on AWS:
+# Setting Up LEMP Stack on AWS:
 
-LEMP stands for: Linux, NGINX web server, MySQL Database, and PHP
+# LEMP stands for: Linux, NGINX web server, MySQL Database, and PHP
 
-1.Connect to EC2 Instance:
 
-Step 1: Create an AWS EC2 instance
+# 1.Connect to EC2 Instance:
+
+# Step 1: Create an AWS EC2 instance
 
 The first thing we are going to do is to log into in the AWS Management Console and create an EC2 instance
 Choose a name you like and select the Ubuntu image for the instance.
@@ -18,9 +19,9 @@ Under the “Network settings” we will create a new security group and select 
 This will allow our instance to be able to send and receive traffic, thus be able to connect to the internet.
 
 
-Step 2: via CLI
+# Step 2: via CLI
 
-i. ON YOUR COMMAND PROMPT Connect to Instance:
+# i. ON YOUR COMMAND PROMPT Connect to Instance:
 Establish SSH connection to the EC2 instance.--
 
 cd "path to your key file" for eg- cd C:\Users\NAME\linux key  (remember to put the cd command before the path)
@@ -30,7 +31,7 @@ looks like this ssh -i /path/to/your/private-key.pem ec2-user@your-ec2-public-ip
                    
                                 OR
 
-ii. TO CONNECT to your instance VIA YOUR AWS LINUX (UBUNTU) - 
+# ii. TO CONNECT to your instance VIA YOUR AWS LINUX (UBUNTU) - 
 ON YOUR AWS CONSOLE click on your instance name and cick on 'connect',
 on the connect to instance page under 'Connect using EC2 Instance Connect, get to the end and click on connect.
 
@@ -43,12 +44,12 @@ if there is anything to ugrade -
 
 sudo apt upgrade
 
-2.Install Components:
+# 2.Install Components:
 
 Install Nginx, MySQL, and PHP packages using package manager commands--
 
  
-a. Installing Nginx --
+# a. Installing Nginx --
 
 sudo apt install nginx
 
@@ -71,7 +72,9 @@ http://<Public-IP-Address>:80
 
  voila 
 
-b. Installing MySQL
+
+# b. Installing MySQL
+
 Our web server is up and running so now it is time to focus on the “M” part of the LEMP stack. The “M” stands for MySQL.
 MySQL is a popular relational database management system used for PHP environments,
 and we will deploying that as part of this project!
@@ -112,7 +115,7 @@ Now that our root user password has been SET. We will reconnect to MySQL to save
 MySQL is now officially installed and secured.
 
 
-c. Installing PHP
+# c. Installing PHP
 
 So far our we have successfully deployed a linux instance, NGINX web server, and MySQL relational database. 
 t is time to deploy the last part of the LEMP stack, and that is PHP.
@@ -129,7 +132,7 @@ Enter “Y” when prompted and hit the ENTER/RETURN key on your keyboard.--
 sudo apt install php-fpm php-mysql
 
 
-3. Configuring NGINX to work with PHP
+# 3. Configuring NGINX to work with PHP
 
 By default NGINX is setup to only run one server block.
 Next, you'll need to configure Nginx to process PHP files.
@@ -209,7 +212,7 @@ sudo systemctl reload nginx
 ( reloads nginx )
 
 
-4.Test LEMP stack - Create and access a PHP info file to confirm successful stack setup.
+# 4.Test LEMP stack - Create and access a PHP info file to confirm successful stack setup.
 
 Our custom website is now up and running, but we have to create an index.html 
 so that we can test out the server block and make sure things are working properly.--
@@ -220,7 +223,7 @@ $(curl -s http://169.254.169.254/latest/meta-data/public-ipv4) > /var/www/projec
 The last leg of the LEMP stack is now complete! In next step we will create a PHP script to test with NGINX!
 
 
-Testing PHP with NGINX
+# Testing PHP with NGINX
 
 We are going to test and validate that NGINX can handle PHP files and serve them on our website.
 
@@ -256,7 +259,7 @@ sudo rm /var/www/your_domain/info.php
 
 
 
-NOTES
+# NOTES
 
 sudo apt install nginx 
 
